@@ -115,11 +115,11 @@ class MineUI:
 
     ## Set up images!
     flag_image = Image.open("./Images/Flag.png")
-    flag_image = flag_image.resize((25, 25))
+    flag_image = flag_image.resize((24, 24))
     self.flag_icon = ImageTk.PhotoImage(flag_image)
 
     bomb_image = Image.open("./Images/Bomb.png")
-    bomb_image = bomb_image.resize((25, 25))
+    bomb_image = bomb_image.resize((24, 24))
     self.bomb_icon = ImageTk.PhotoImage(bomb_image)
   
   # build the map
