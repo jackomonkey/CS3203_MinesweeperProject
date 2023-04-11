@@ -34,7 +34,13 @@ class MineUI:
       
       self.map[row][col].destroy() # Get rid of that button!
       cell_neighbors = self.mine_map.reveal_cell(row, col) # Update the sub-surface stuff
-      tkinter.Label(self.frm, text=self.mine_map.return_cell_status(row, col)).grid(row=row+3, column=col) # Replace it with a label that has no interaction!
+
+       # Replace it with a label that has no interaction!
+      if (self.mine_map.return_cell_status(row, col) == 'B'): #Bomb if bomb
+        tkinter.Label(self.frm, image=self.bomb_icon).grid(row=row+3, column=col)
+      else: # Otherwise, appropriate number
+        tkinter.Label(self.frm, image=self.num_pictures[self.mine_map.return_cell_status(row, col)]).grid(row=row+3, column=col)
+      
       
       if cell_neighbors == 0: #if cell has no neighbors
         # reveal neighboring cells.
@@ -67,7 +73,6 @@ class MineUI:
               self.on_button_press(row+1, col+1)
       if self.mine_map.check_lose():
         #A bit of a ramshackle solution, but I reckon it won't cause problems. Hopefully.
-        tkinter.Label(self.frm, image=self.bomb_icon).grid(row=row+3, column=col)
         self.lose()
       elif self.mine_map.check_win():
         self.win()
@@ -128,6 +133,12 @@ class MineUI:
     blank_image = Image.open("./Images/Blank.png")
     blank_image = blank_image.resize((24, 24))
     self.blank_icon = ImageTk.PhotoImage(blank_image)
+
+    ## Images for the various numbers:
+    self.num_pictures = []
+    for ii in range(0,9):
+      # unpacks and adds the image for each number to the corresponding place in the list.
+      self.num_pictures.append(ImageTk.PhotoImage(Image.open("./Images/Numbers/num" + str(ii) + ".png").resize((24,24))))
   
   # build the map
     self.map = []
