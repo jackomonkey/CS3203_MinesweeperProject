@@ -156,4 +156,4 @@ class MineUI:
     self.flag_button = tkinter.Button(self.top, text="flag mode", command=lambda: self.toggle_flag_mode())
     self.flag_button.grid(column=0, row=0)
   
-  
+    self.root.mainloop()
