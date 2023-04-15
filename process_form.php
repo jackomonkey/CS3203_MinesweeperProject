@@ -1,35 +1,38 @@
 <?php
-// Connect to the MySQL database
+// Retrieve the username and password entered by the user
+
+// Connect to your MySQL database
 $servername = "localhost";
 $username = "u351964368_root";
 $password = "SoftwareEngineering3203";
 $dbname = "u351964368_SoftwareEngr";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$username = $_POST["username"];
+$password = $_POST["password"];
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
-// Retrieve data submitted from the username and password fields
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-// Validate and sanitize the data
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
 
-// Insert the data into the specific table in the database
-$sql = "INSERT INTO Players (username, password) VALUES ('$username', '$password')";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-if (mysqli_query($conn, $sql)) {
-  //if connection works, cdir to random.php
-  include 'random.php';
+// Execute a SELECT statement to retrieve the row from the Users table that matches the entered username and password
+$sql = "SELECT time FROM Users WHERE username = '$username' AND password = '$password'";
+$result = $conn->query($sql);
+
+// If a matching row is found, extract the value of the time column from the row
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $time_value = $row["time"];
+    // Modify the HTML output to display the time value
+    echo "The time for user " . $username . " is " . $time_value;
 } else {
-  echo "Error inserting data: " . mysqli_error($conn);
+    echo "No matching user found";
 }
 
 // Close the database connection
-mysqli_close($conn);
+$conn->close();
 ?>
