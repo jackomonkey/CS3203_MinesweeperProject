@@ -1,5 +1,6 @@
 import random
 import MineCell
+from timeit import default_timer
 
 class MineMap:
 
@@ -10,8 +11,11 @@ class MineMap:
     self.mines_per_tile = mines_per_tile
     self.lose = False
     self.map_generated = False
+    self.start_time = default_timer()
 
 
+  def get_time(self):
+    return default_timer() - self.start_time
   def generatemap(self, row, column):
     ## TODO: FIND A WAY TO DO THIS AFTER WE PICK OUR FIRST TILE, SO WE GET A STARTING AREA
     self.map_generated = True
@@ -73,11 +77,11 @@ class MineMap:
     self.map[row][col].reveal()
     if (self.map[row][col].is_bomb()):
       self.lose = True
-      print("BOMB!")
+      #print("BOMB!")
       ## TODO: FIGURE OUT WHERE THE LOSE FUNCTION GOES, AND LINK TO IT HERE
     else:
       self.tiles_left -= 1
-      print(self.tiles_left)
+      #print(self.tiles_left)
       self.map[row][ col].set_neighbor_count(self.check_cell_neighbors(row, col)
       )
         ## TODO: FIGUREOUT WHERE THE WIN FUNCTION GOES, AND LINK TO IT HERE 
@@ -91,7 +95,7 @@ class MineMap:
     return self.lose
 
   def check_win(self):
-    if self.tiles_left == 0:
+    if (not self.lose) and self.tiles_left == 0:
       return True
     else:
       return False
