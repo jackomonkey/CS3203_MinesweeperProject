@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--this sets the title of the website -->
 	<title>Your Mine Will Be Swept! </title>
 	<style>
 		body {
@@ -51,12 +52,6 @@
 </head>
 <body>
 	<h1>Your Mine Will Be Swept!</h1>
-	<p>This is a super simple website created using HTML.</p>
-	<ul>
-		<li>Item 1</li>
-		<li>Item 2</li>
-		<li>Item 3</li>
-	</ul>
 	<form action="process_form.php" method="post">
 	    <label for="username">Username:</label>
 	    <input type="text" id="username" name="username" required>
