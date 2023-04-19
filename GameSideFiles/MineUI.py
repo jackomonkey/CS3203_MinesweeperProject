@@ -108,7 +108,12 @@ class MineUI:
       self.flag_button.configure(background="Red")
     else:
       self.flag_button.configure(background="white")
-  
+  def update_timer(self):
+    time = int(self.mine_map.get_time())
+    self.d0 = tkinter.Label(self.top, image=self.num_pictures[time % 10]).grid(row=0, column=self.map_size - 2)
+    self.d1 = tkinter.Label(self.top, image=self.num_pictures[int(time / 10) % 10]).grid(row=0, column=self.map_size - 3)
+    self.d2 = tkinter.Label(self.top, image=self.num_pictures[int(time / 100) % 10]).grid(row=0, column=self.map_size - 4)
+    self.root.after(1000, self.update_timer)
   def __init__(self, map_size, mines_per_tile, mine_map):
     #save some variables
     self.map_size = map_size
@@ -140,7 +145,7 @@ class MineUI:
 
     ## Images for the various numbers:
     self.num_pictures = []
-    for ii in range(0,9):
+    for ii in range(0,10):
       # unpacks and adds the image for each number to the corresponding place in the list.
       self.num_pictures.append(ImageTk.PhotoImage(Image.open("./Images/Numbers/num" + str(ii) + ".png").resize((24,24))))
   
@@ -160,5 +165,6 @@ class MineUI:
     self.flag_button = tkinter.Button(self.top, text="flag mode", command=lambda: self.toggle_flag_mode())
     self.flag_button.grid(column=0, row=0)
 
+    self.update_timer()
     self.root.mainloop()
   
