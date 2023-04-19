@@ -8,9 +8,8 @@ class MineUI:
     if not self.mine_map.map_generated: #if it is the first click, generate the map
       self.mine_map.generatemap(row, col)
 
-    if self.mine_map.check_lose(): # Don't let them keep pressing buttons if the game is over.
-      return
-    elif self.mine_map.check_win():
+    
+    if self.mine_map.check_win():
       return
       
     if self.flag_mode:
@@ -21,7 +20,7 @@ class MineUI:
         self.map[row][col].configure(image=self.flag_icon)
       else:
         #self.map[row][col].configure(background = "white")
-        print("removing flag")
+        #print("removing flag")
         self.map[row][col].configure(image=self.blank_icon)
       
     else:
@@ -79,12 +78,16 @@ class MineUI:
 
   def lose(self):
     tkinter.Label(self.top, text="You lost!").grid(column=int(self.map_size/2), row=1)
+    #for rows in range(0, self.map_size): ## results in too many recursions? or too much recurstion depth? something like that. :'( ## if it worked, would reveal the map after you lost.
+      #for columns in range(0,self.map_size):
+        #self.on_button_press(rows, columns)
     
   def win(self):
+    self.finish_time = int(self.mine_map.get_time())
     tkinter.Label(self.top, text="You Won!").grid(column=int(self.map_size/2), row=1)
-    tkinter.Label(self.top, text="Username:").grid(column=1, row=0)
-    tkinter.Label(self.top, text="Password:").grid(column=3, row=0)
-    
+    #tkinter.Label(self.top, text="Username:").grid(column=1, row=0)
+    #tkinter.Label(self.top, text="Password:").grid(column=3, row=0)
+    tkinter.Button(self.top, text="Submit", command=self.collect_ID).grid(column=4, row=1)
     ## TODO: FIX FOR DIFFERENT BOARD SIZES!
     ## or just remove?
     
@@ -96,7 +99,8 @@ class MineUI:
     tkinter.Button(self.frm, text = "submit").grid(column = self.map_size-1, row = 1, command=lambda: self.collectID())
     
   def collect_ID(self):
-    (self.username.get(), self.password.get())
+    #Collects username, password, map_size, and finish_time, returns as a tuple.
+    return (self.username.get(), self.password.get(), self.map_size, self.finish_time)
 
   def toggle_flag_mode(self):
     self.flag_mode = not self.flag_mode
@@ -155,5 +159,6 @@ class MineUI:
     tkinter.Button(self.top, text="Quit", command=self.root.destroy).grid(row=0, column=self.map_size - 1)
     self.flag_button = tkinter.Button(self.top, text="flag mode", command=lambda: self.toggle_flag_mode())
     self.flag_button.grid(column=0, row=0)
-  
+
     self.root.mainloop()
+  
