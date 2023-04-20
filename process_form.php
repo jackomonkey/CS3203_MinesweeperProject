@@ -1,4 +1,28 @@
 <?php
+//this .message box is css styling for the 
+//next webpage. When the submit button is clicked,
+//and the 'echo' command is initiated, the echo command
+//opens up a new web page and styles it with this css. The
+//echo command lower on the page calls this command to do
+//the styling
+echo '<style>
+.message {
+    position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("minesweeper.jpg");
+  background-size: cover;
+  background-position: center center;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 72px;
+  z-index: 9999;
+}
+</style>';
 // Connect to your MySQL database
 //When you use "localhost" as the servername, PHP knows to connect to 
 //the MySQL server running on the same computer as the PHP script
@@ -52,10 +76,10 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     //this statement retrieves the time with the specified row
     $time_value = $row["time"];
-    
-    echo "The time for user " . $username . " is " . $time_value;
+    //opens up new webpage and calls message function at the top
+    echo '<div class="message">The time for user ' . $username . ' is ' . $time_value . '</div>';
 } else {
-    echo "No matching user found";
+    echo '<div class="message">No matching user found</div>';
 }
 
 // Closes the database connection
