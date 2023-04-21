@@ -3,7 +3,11 @@
 ---
 ### How to run the project:
 ---
-> DISCLAIMER
+### Features:
+---
+### Bugs:
+---
+**DISCLAIMER**
 This project stores the following information:
 - Username
 - Password
