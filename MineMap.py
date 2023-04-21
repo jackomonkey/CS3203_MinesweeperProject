@@ -11,11 +11,15 @@ class MineMap:
     self.mines_per_tile = mines_per_tile
     self.lose = False
     self.map_generated = False
-    self.start_time = default_timer()
+    self.start_time = 0
 
 
   def get_time(self):
-    return default_timer() - self.start_time
+    if(self.map_generated):
+      return default_timer() - self.start_time
+    else:
+      return 0
+    
   def generatemap(self, row, column):
     ## TODO: FIND A WAY TO DO THIS AFTER WE PICK OUR FIRST TILE, SO WE GET A STARTING AREA
     self.map_generated = True
@@ -30,6 +34,8 @@ class MineMap:
           self.tiles_left -= 1
         else:
           self.map[r].append(MineCell.Cell(False))
+
+    self.start_time = default_timer() # Timer starts when you first click.
 
   def check_cell_neighbors(self, row, col):
     neighbor_bombs = 0

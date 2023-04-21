@@ -13,8 +13,6 @@ class MineUI:
   def on_button_press(self, row, col):
     if not self.mine_map.map_generated: #if it is the first click, generate the map
       self.mine_map.generatemap(row, col)
-      self.update_timer() # Timer starts when you first click.
-
     
     if self.mine_map.check_win():
       return
@@ -94,7 +92,7 @@ class MineUI:
     tkinter.Label(self.top, text="You Won!").grid(column=int(self.map_size/2), row=1)
     
     
-    self.sendData(self.username, self.password, self.finish_time)
+    self.send_data(self.username, self.password, self.finish_time)
 
   def collect_ID(self):
     #Collects username, password, map_size, and finish_time, returns as a tuple.
@@ -181,6 +179,7 @@ class MineUI:
 
     # Start the game.
     
+    self.update_timer()
     self.root.mainloop()
 
   def __init__(self, root, map_size, mines_per_tile, mine_map):
