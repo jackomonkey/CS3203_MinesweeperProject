@@ -8,7 +8,7 @@
 ### Bugs:
 ---
 **DISCLAIMER**
-This project stores the following information:
+> This project stores the following information:
 - Username
 - Password
 - Time to complete a game
