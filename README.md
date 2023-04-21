@@ -7,7 +7,7 @@
 ---
 ### Bugs:
 ---
-**DISCLAIMER**
+## **DISCLAIMER**
 > This project stores the following information:
 - Username
 - Password
