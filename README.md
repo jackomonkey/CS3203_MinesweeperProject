@@ -20,8 +20,10 @@ None
 
 ---
 ## Extra Features:
-Database - MySQL is used for storing three pieces of information per user: username, password, and time.
-Hashing - Passwords will be stored in the database using MD5 hash function.
+### Database 
+MySQL is used for storing three pieces of information per user: username, password, and time.
+### Hashing 
+Passwords will be stored in the database using MD5 hash function.
 ## **DISCLAIMER**
 > This project stores the following information:
 - Username
