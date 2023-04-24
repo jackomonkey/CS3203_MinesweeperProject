@@ -12,10 +12,14 @@ Running the application begins with a login screen. After logging in, you will b
 ---
 
 ### Website
+
 The website offers a login page to check a user's high score.
+
 ---
 ## Bugs:
+
 None
+
 ---
 ## Extra Features:
 Database - MySQL is used for storing three pieces of information per user: username, password, and time.
