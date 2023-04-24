@@ -10,6 +10,8 @@ Running the application begins with a login screen. After logging in, you will b
 **Website**
 The website offers a login page to check a user's high score.
 ---
+
+---
 ### Bugs:
 None
 ---
