@@ -6,7 +6,8 @@ import tkinter
 
 
 if __name__ == "__main__":
-  map_size = int(input("Map width and height: "))
+  #map_size = int(input("Map width and height: "))
+  map_size = 10
   #mines_per_tile = float(input("Mines per tile: "))
   mines_per_tile = 0.25
 

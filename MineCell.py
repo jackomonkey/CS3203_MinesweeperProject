@@ -26,6 +26,6 @@ class Cell:
     self.revealed = True
 
   def set_neighbor_count(self, neighbor_count):
-    
+
     self.neighbor_count = neighbor_count
     
